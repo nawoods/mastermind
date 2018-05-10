@@ -4,18 +4,20 @@ class Turn
   def initialize(guess_colors, solution)
     @guess_colors = guess_colors
     @solution = solution
+    @response_colors_storage = nil
   end
   
   def response_colors
+    return @response_colors_storage if @response_colors_storage
     unmatched_guess_colors = []
     unmatched_solution_colors = []
     response = []
     4.times do |i|
-      if guess_colors[i] == solution[i]
+      if guess_colors[i] == @solution[i]
         response.push("red")
       else
         unmatched_guess_colors.push(guess_colors[i])
-        unmatched_solution_colors.push(solution[i])
+        unmatched_solution_colors.push(@solution[i])
       end
     end
     
@@ -25,5 +27,8 @@ class Turn
       response.push("white")
       unmatched_solution_colors.slice!(solution_index)
     end
+    
+    @response_colors_storage = response
+    response
   end
 end
