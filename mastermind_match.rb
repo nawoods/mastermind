@@ -1,7 +1,7 @@
 require "./turn"
 
 class MastermindMatch
-  attr_accessor :game_state, :solution
+  attr_accessor :game_state, :solution, :colors, :turns
 
   POSSIBLE_COLORS = ["red", "blue", "yellow", "green", "purple", "cyan",
                      "black", "white", "gray", "brown"]
