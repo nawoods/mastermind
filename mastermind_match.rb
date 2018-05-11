@@ -1,7 +1,7 @@
-include "./turn"
+require "./turn"
 
 class MastermindMatch
-  attr_accessor :game_state
+  attr_accessor :game_state, :solution
 
   POSSIBLE_COLORS = ["red", "blue", "yellow", "green", "purple", "cyan",
                      "black", "white", "gray", "brown"]
@@ -24,8 +24,8 @@ class MastermindMatch
   end
   
   def take_turn(guess_colors)
-    @turns.push(Turn.new(guess_colors))
-    if @turns.last == ["red", "red", "red", "red"]
+    @turns.push(Turn.new(guess_colors, @solution))
+    if @turns.last.response_colors == ["red", "red", "red", "red"]
       @game_state = :win
     else
       @game_state = :lose if @number_of_turns == @turns.length
