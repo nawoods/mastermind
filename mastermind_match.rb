@@ -15,6 +15,13 @@ class MastermindMatch
     @solution = []
     4.times { @solution.push(@colors.sample) }
   end
+
+  def to_s
+    result = "Guesses#{" " * 25}| Feedback#{" " * 16}\n"\
+             "#{"-" * 32}|#{"-" * 25}\n"
+    @turns.each { |turn| result << turn.to_s + "\n" }
+    result
+  end
   
   def take_turn(guess_colors)
     @turns.push(Turn.new(guess_colors))
