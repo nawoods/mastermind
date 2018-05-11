@@ -4,11 +4,19 @@ class Turn
   def initialize(guess_colors, solution)
     @guess_colors = guess_colors
     @solution = solution
-    @response_colors_storage = nil
+    @response_colors = response_colors
+  end
+  
+  def to_s
+    result = ""
+    guess_colors.each { |color| result << " " * (8 - color.length) }
+    result << "| "
+    response_colors.each { |color| result << " " * (6 - color.length) }
+    result
   end
   
   def response_colors
-    return @response_colors_storage if @response_colors_storage
+    return @response_colors if @response_colors
     unmatched_guess_colors = []
     unmatched_solution_colors = []
     response = []
@@ -28,7 +36,7 @@ class Turn
       unmatched_solution_colors.slice!(solution_index)
     end
     
-    @response_colors_storage = response
+    @response_colors = response
     response
   end
 end
