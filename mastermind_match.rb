@@ -24,12 +24,13 @@ class MastermindMatch
   end
   
   def take_turn(guess_colors)
-    @turns.push(Turn.new(guess_colors, @solution))
+    @turns << Turn.new(guess_colors, @solution)
     if @turns.last.response_colors == ["red", "red", "red", "red"]
       @game_state = :win
     else
       @game_state = :lose if @number_of_turns == @turns.length
     end
+    @turns.last
   end
   
   def response_colors(guess_colors)
