@@ -9,9 +9,9 @@ class Turn
   
   def to_s
     result = ""
-    guess_colors.each { |color| result << color + " " * (8 - color.length) }
+    @guess_colors.each { |color| result << color + " " * (8 - color.length) }
     result << "| "
-    response_colors.each { |color| result << color + " " * (6 - color.length) }
+    @response_colors.each { |color| result << color + " " * (6 - color.length) }
     result
   end
   

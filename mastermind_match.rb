@@ -5,15 +5,23 @@ class MastermindMatch
 
   POSSIBLE_COLORS = ["red", "blue", "yellow", "green", "purple", "cyan",
                      "black", "white", "gray", "brown"]
+
+  def self.possible_colors(number_of_colors)
+    POSSIBLE_COLORS.slice(0, number_of_colors)
+  end
                      
-  def initialize(number_of_colors, number_of_turns)
+  def initialize(number_of_colors, number_of_turns, solution = nil)
     @colors = POSSIBLE_COLORS.slice(0, number_of_colors)
     @number_of_turns = number_of_turns
     @turns = []
     @game_state = :ongoing
 
-    @solution = []
-    4.times { @solution << @colors.sample }
+    if solution
+      @solution = solution
+    else
+      @solution = []
+      4.times { @solution << @colors.sample }
+    end
   end
 
   def to_s

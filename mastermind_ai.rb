@@ -21,7 +21,7 @@ class MastermindAI
     guess_colors = @possible_solutions.sample
     turn = @match.take_turn(guess_colors)
     @possible_solutions.select! do |s| 
-      turn.response_colors == match.response_colors(s)
+      Turn.new(guess_colors, s).response_colors == turn.response_colors
     end
     turn
   end
