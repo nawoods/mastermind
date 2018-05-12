@@ -1,7 +1,7 @@
 require "./turn"
 
 class MastermindMatch
-  attr_accessor :game_state, :solution, :colors, :turns
+  attr_reader :game_state, :colors, :turns
 
   POSSIBLE_COLORS = ["red", "blue", "yellow", "green", "purple", "cyan",
                      "black", "white", "gray", "brown"]
@@ -13,7 +13,7 @@ class MastermindMatch
     @game_state = :ongoing
 
     @solution = []
-    4.times { @solution.push(@colors.sample) }
+    4.times { @solution << @colors.sample }
   end
 
   def to_s
@@ -30,5 +30,9 @@ class MastermindMatch
     else
       @game_state = :lose if @number_of_turns == @turns.length
     end
+  end
+  
+  def response_colors(guess_colors)
+    Turn.new(guess_colors, @solution).response_colors
   end
 end

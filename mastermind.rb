@@ -1,6 +1,6 @@
 require "./mastermind_match"
 
-#valid_answers can be a Regexp or an Array.
+# answers can be a Regexp or an Array.
 def prompt(question, answers)
   loop do
     print question
@@ -40,5 +40,5 @@ loop do
   puts "You lose :<" if match.game_state == :lose
   
   question = "Play again? (y/n): "
-  break if prompt(question, /[yYnN]/).downcase == "n"
+  break if prompt(question, /\A[yYnN]\Z/).downcase == "n"
 end
